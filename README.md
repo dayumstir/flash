@@ -48,6 +48,7 @@ sudo pacman -Sy nodejs npm
 expo init ____ (your project name) 
 ```
 Click the blank template when prompted
+
 4) Navigate into the folder 
 ```
 cd ____ (your project name)
