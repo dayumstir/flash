@@ -1,5 +1,4 @@
-# Project Name
-flash
+# flash
 
 ## Project Scope
 “flash” is a social media application which aims to provide climbers with a platform to share and view videos of rock climbing betas.
