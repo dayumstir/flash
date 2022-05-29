@@ -29,25 +29,24 @@ It is always more fun to climb with a big group of friends. However, without a p
 - Filter by gym and difficulty
 - Profile page
 - Navigation bar
- 
-### Design
-asdfadsf
 
 ### Plan
-asdfaf
+For Milestone 1,
+- 9 - 16 May: Ideation
+- 17 - 23 May: Preliminary research into mobile application tech stack
+- 24 - 26 May: Prototype creation (Landing, Login and Register page)
+- 27 - 29 May: Design (Landing, Login and Register page)
 
 ## Using the features
-1) Install Expo on your device (link to installation: expo.io)
-2) Install NodeJS by typing this code into your terminal
+1) Install NodeJS by typing this code into your terminal
 ```
 sudo pacman -Sy nodejs npm
 ```
-3) Create a new project by typing the following into your terminal
+2) Install Expo on your device (link to installation: expo.io)
+3) Create a new project by typing the following into your terminal and choose the blank template when prompted
 ```
 expo init ____ (your project name) 
 ```
-Click the blank template when prompted
-
 4) Navigate into the folder 
 ```
 cd ____ (your project name)
