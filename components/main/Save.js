@@ -4,11 +4,13 @@ import { View, TextInput, Image, Button } from 'react-native'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
-// require("firebase/compat/firestore")
-// require("firebase/compat/firebase-storage")
+import 'firebase/compat/storage'
+import { NavigationContainer } from '@react-navigation/native'
+require("firebase/firestore")
+require("firebase/storage")
 
 
-export default function Save(props) {
+export default function Save(props, {navigation}) {
     const [caption, setCaption] = useState("")
 
     const uploadImage = async () => {
@@ -26,11 +28,12 @@ export default function Save(props) {
             .put(blob)
 
         const taskProgress = snapshot => {
-            console.log(`transferred: ${snapshot.bytesTransferrred}`)
+            console.log(`transferred: ${snapshot.bytesTransferred}`)
         }
 
         const taskCompleted = () => {
             task.snapshot.ref.getDownloadURL().then((snapshot) => {
+                savePostData(snapshot)
                 console.log(snapshot)
             })
         }
@@ -40,6 +43,20 @@ export default function Save(props) {
         }
 
         task.on("state_changed", taskProgress, taskError, taskCompleted)
+    }
+
+    const savePostData = (downloadURL) => {
+        firebase.firestore()
+            .collection('posts')
+            .doc(firebase.auth().currentUser.uid)
+            .collection("userPosts")
+            .add({
+                downloadURL,
+                caption,
+                creation: firebase.firestore.FieldValue.serverTimestamp()
+            }).then((function () {
+                props.navigation.popToTop()
+            }))
     }
 
     return (
