@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
-require('frebase/firestore')
+require('firebase/firestore')
 
 function Profile(props) {
   const [userPost, setUserPosts] = useState([]);
