@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Stylesheet, View, Text, Image, FlatList } from 'react-native'
+import { StyleSheet, View, Text, Image, FlatList } from 'react-native'
 
 import {connect} from 'react-redux'
 
@@ -9,7 +9,7 @@ import 'firebase/compat/firestore'
 require('firebase/firestore')
 
 function Profile(props) {
-  const [userPost, setUserPosts] = useState([]);
+  const [userPosts, setUserPosts] = useState([]);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -20,9 +20,8 @@ function Profile(props) {
         setUser(currentUser)
         setUserPosts(posts)
     } else {
-      return((dispatch) => {
         firebase.firestore()
-            .collection("user")
+            .collection("users")
             .doc(props.route.params.uid)
             .get()
             .then((snapshot) => {
@@ -47,7 +46,6 @@ function Profile(props) {
                 console.log(posts)
                 setUserPosts(posts)
             })
-      })
     }
   }, [props.route.params.uid])
 
@@ -57,26 +55,26 @@ function Profile(props) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.containerInfo}>
+        <View style={styles.containerInfo}>
           <Text>{user.name}</Text>
           <Text>{user.email}</Text>
-      </View>
-      <View style={styles.containerGallery}>
-        <FlatList
-          numColumns={3}
-          horizontal={false}
-          data={userPosts}
-          renderItem={({item}) => (
-            <View
-              style={styles.containerImage}>
-              <Image
-                style={styles.image}
-                source={{uri: item.downloadURL}}
-              />
-            </View>
-          )}
-        />
-      </View> 
+        </View>
+        <View style={styles.containerGallery}>
+          <FlatList
+            numColumns={3}
+            horizontal={false}
+            data={userPosts}
+            renderItem={({item}) => (
+              <View
+                style={styles.containerImage}>
+                <Image
+                  style={styles.image}
+                  source={{uri: item.downloadURL}}
+                />
+              </View>
+            )}
+          />
+        </View> 
     </View>
 
   )
