@@ -30,10 +30,6 @@ function Feed(props) {
 
     }, [props.usersLoaded])
 
-    if(user === null) {
-      return <View/>  
-    }
-
     return (
         <View style={styles.container}>
             <View style={styles.containerGallery}>
