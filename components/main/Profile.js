@@ -15,7 +15,7 @@ function Profile(props) {
 
     useEffect(() => {
         const { currentUser, posts } = props;
-        console.log({ currentUser, posts })
+        // console.log({ currentUser, posts })
 
         if(props.route.params.uid === firebase.auth().currentUser.uid) {
             setUser(currentUser)
@@ -44,7 +44,7 @@ function Profile(props) {
                         const id = doc.id;
                         return { id, ...data }
                     })
-                    console.log(posts)
+                    // console.log(posts)
                     setUserPosts(posts)
                 })
         }
@@ -100,7 +100,7 @@ function Profile(props) {
                     </View>
                 ) : null}
             </View>
-            
+
             <View style={styles.containerGallery}>
                 <FlatList
                     numColumns={3}
