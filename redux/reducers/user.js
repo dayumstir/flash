@@ -13,17 +13,17 @@ export const user = (state = initialState, action) => {
                 ...state,
                 currentUser: action.currentUser
             }
-            case USER_POSTS_STATE_CHANGE:
-                return {
-                    ...state,
-                    posts: action.posts
-                }
-            case USER_FOLLOWING_STATE_CHANGE:
-                return {
-                    ...state,
-                    following: action.following
-                }
-            default:
-                return state;
+        case USER_POSTS_STATE_CHANGE:
+            return {
+                ...state,
+                posts: action.posts
+            }
+        case USER_FOLLOWING_STATE_CHANGE:
+            return {
+                ...state,
+                following: action.following
+            }
+        default:
+            return state;
     }
 }
