@@ -13,6 +13,7 @@ import { fetchUser, fetchUserPosts, fetchUserFollowing, clearData} from '../redu
 import FeedScreen from './main/Feed'
 import ProfileScreen from './main/Profile'
 import SearchScreen from './main/Search'
+import FilterScreen from './main/Filter'
 
 
 
@@ -56,6 +57,12 @@ export class Main extends Component {
                             <MaterialCommunityIcons name="plus-box" color={color} size={26}/>
                         ),
                 }}/>
+                <Tab.Screen name="FilterScreen" component={FilterScreen} navigation={this.props.navigation}
+                    options={{
+                        tabBarIcon: ({ color, size }) => (
+                            <MaterialCommunityIcons name="filter" color={color} size={26}/>
+                        ),
+                    }}/>
                 <Tab.Screen name="Profile" component={ProfileScreen} 
                     listeners={({ navigation }) => ({
                         tabPress: event => {
