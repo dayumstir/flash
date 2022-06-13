@@ -64,6 +64,8 @@ const difficulty = [
 
 export default function Save(props, {navigation}) {
     const [caption, setCaption] = useState("")
+    const [selectedGym, setSelectedGym] = useState({})
+    const [selectedDifficulty, setSelectedDifficulty] = useState([])
 
     const uploadImage = async () => {
         const uri = props.route.params.image
@@ -97,6 +99,13 @@ export default function Save(props, {navigation}) {
         task.on("state_changed", taskProgress, taskError, taskCompleted)
     }
 
+    function onGymChange() {
+        return (val) => setSelectedGym(val)
+    }
+    function onDifficultyChange() {
+        return (val) => setSelectedDifficulty(val)
+    }
+
     const savePostData = (downloadURL) => {
         firebase.firestore()
             .collection('posts')
@@ -105,14 +114,13 @@ export default function Save(props, {navigation}) {
             .add({
                 downloadURL,
                 caption,
-                creation: firebase.firestore.FieldValue.serverTimestamp()
+                creation: firebase.firestore.FieldValue.serverTimestamp(),
+                gym: selectedGym.item,
+                difficulty: selectedDifficulty.item
             }).then((function () {
                 props.navigation.popToTop()
             }))
-    }
-
-    const [selectedGym, setSelectedGym] = useState({})
-    const [selectedDifficulty, setSelectedDifficulty] = useState([])
+    }    
 
     return (
         <View style={{ flex: 1, margin: 30}}>
@@ -143,17 +151,10 @@ export default function Save(props, {navigation}) {
                 onChange={onDifficultyChange()}
                 hideInputFilter={false}
             />
-            
+
             <View style={{ height: 40 }} />
 
             <Button title="Save" onPress={() => uploadImage()}/>
         </View>
     )
-
-    function onGymChange() {
-        return (val) => setSelectedGym(val)
-    }
-    function onDifficultyChange() {
-        return (val) => setSelectedDifficulty(val)
-    }
 }
