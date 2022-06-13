@@ -99,11 +99,11 @@ function Filter() {
     )
   
     function onGymChange() {
-      return (val) => setSelectedGym(val)
+        return (val) => setSelectedGym(val)
     }
     function onDifficultyChange() {
         return (val) => setSelectedDifficulty(val)
-      }
+    }
   }
   
   export default Filter
