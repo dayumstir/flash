@@ -55,7 +55,7 @@ const difficulty = [
     {id:10, item: 'Level 10'},
 ]
 
-function Filter() {
+function Filter({ navigation }) {
     const [selectedGym, setSelectedGym] = useState({})
     const [selectedDifficulty, setSelectedDifficulty] = useState([])
 
@@ -94,6 +94,7 @@ function Filter() {
         <Button
           title='Go'
           /*onPress={() => onFilter()}*/
+          onPress={() => navigation.navigate('Filtered')}
         />
       </View>
     )

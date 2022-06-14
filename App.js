@@ -37,6 +37,7 @@ import MainScreen from './components/Main'
 import AddScreen from './components/main/Add'
 import SaveScreen from './components/main/Save'
 import FilterScreen from './components/main/Filter'
+import FilteredScreen from './components/main/Filtered'
 
 
 const Stack = createStackNavigator();
@@ -99,6 +100,7 @@ export class App extends Component {
             <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation}/>
             <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation}/>
             <Stack.Screen name="Filter" component={FilterScreen} navigation={this.props.navigation}/>
+            <Stack.Screen name="Filtered" component={FilteredScreen} navigation={this.props.navigation}/>
 
           </Stack.Navigator>
         </NavigationContainer>
