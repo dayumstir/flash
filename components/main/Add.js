@@ -54,7 +54,7 @@ export default function Add({ navigation }) {
             ratio={'1:1'}/>
         </View>
         
-        <TouchableOpacity style={styles.flipCameraButton}
+        <TouchableOpacity style={styles.flipCameraButtonContainer}
             onPress={() => {
             setType(
                 type === CameraType.back 
@@ -62,20 +62,38 @@ export default function Add({ navigation }) {
                 : CameraType.back
             );
             }}>
-                <Text style={styles.buttonText}>Flip Camera</Text>
+                {/* <Text style={styles.buttonText}>Flip Camera</Text> */}
+                <Image 
+                    source={require('../../assets/flip_camera_icon.png')}
+                    style={{ width: 50, height: 50 }}
+                />
         </TouchableOpacity>
         
-        <TouchableOpacity style={styles.takePictureButton} onPress={() => takePicture()}>
-            <Text style={styles.buttonText}>Take Picture</Text>
-        </TouchableOpacity>
+        <View style={styles.bottomContainer}>
+            <TouchableOpacity style={styles.pickGalleryButton} onPress={() => pickImage()}>
+                {/* <Text style={styles.buttonText}>Pick From Gallery</Text> */}
+                <Image 
+                        source={require('../../assets/pick_gallery_icon.png')}
+                        style={{ width: 50, height: 50 }}
+                />
+            </TouchableOpacity>
+            
+            <TouchableOpacity style={styles.takePictureButton} onPress={() => takePicture()}>
+                {/* <Text style={styles.buttonText}>Take Picture</Text> */}
+                <Image 
+                        source={require('../../assets/take_picture_icon.png')}
+                        style={{ width: 50, height: 50 }}
+                />
+            </TouchableOpacity>
 
-        <TouchableOpacity style={styles.pickGalleryButton} onPress={() => pickImage()}>
-            <Text style={styles.buttonText}>Pick From Gallery</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Save', {image})}>
-            <Text style={styles.buttonText}>Save</Text>
-        </TouchableOpacity>
+            <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Save', {image})}>
+                {/* <Text style={styles.buttonText}>Save</Text> */}
+                <Image 
+                        source={require('../../assets/save_icon.png')}
+                        style={{ width: 50, height: 50 }}
+                />
+            </TouchableOpacity>
+        </View>
 
         {image && <Image source={{uri: image}} style={{ flex: 1 }}/>}
     </View>
@@ -88,36 +106,39 @@ const styles = StyleSheet.create({
         backgroundColor: 'black'
     },
     cameraContainer: {
-        flex: 1,
+        flex: 0.55,
         flexDirection: 'row',
     },
-    flipCameraButton: {
-        flex: 0.1,
-        alignItems: 'center',
-        alignSelf: 'center',
+    flipCameraButtonContainer: {
+        flex: 0.2,
+        alignSelf: 'flex-end',
         height: 50, 
-        width: 150,
+        width: 80,
+    },
+    bottomContainer: {
+        flex: 0.2,
+        flexDirection: 'row',
     },
     takePictureButton: {
-        flex: 0.1,
+        flex: 0.6,
         alignItems: 'center',
         alignSelf: 'center',
         height: 50, 
-        width: 150,
+        width: 80,
     },
     pickGalleryButton: {
-        flex: 0.1,
+        flex: 0.3,
         alignItems: 'center',
         alignSelf: 'center',
         height: 50, 
-        width: 150,
+        width: 40,
     },
     saveButton: {
-        flex: 0.5,
+        flex: 0.3,
         alignItems: 'center',
         alignSelf: 'center',
         height: 50, 
-        width: 150,
+        width: 40,
     },
     buttonText: {
         color: "white"
