@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, Button, Image } from 'react-native';
+import { StyleSheet, Text, View, Button, Image, TouchableOpacity } from 'react-native';
 import { Camera, CameraType } from 'expo-camera';
 import * as ImagePicker from 'expo-image-picker';
 import { NavigationContainer } from '@react-navigation/native';
@@ -45,46 +45,87 @@ export default function Add({ navigation }) {
     return <Text>No access to camera</Text>;
   }
   return (
-    <View style={{ flex: 1 }}>
-      <View style={styles.cameraContainer}>
-        <Camera
-          ref={ref => setCamera(ref)}
-          style={styles.fixedRatio} 
-          type={type}
-          ratio={'1:1'}/>
-      </View>
-      <Button
-        style={{
-          flex: 0.1,
-          alignSelf: 'flex-end',
-          alignItems: 'center',
-        }}
-        title="Flip Image"
-        onPress={() => {
-           setType(
-            type === CameraType.back 
-            ? CameraType.front 
-            : CameraType.back
-          );
-        }}>
-      </Button>
-      <Button title="Take Picture" onPress={() => takePicture()}/>
-      <Button title="Pick Image From Gallery" onPress={() => pickImage()}/>
-      <Button title="Save" onPress={() => navigation.navigate('Save', {image})}/>
-      {image && <Image source={{uri: image}} style={{ flex: 1 }}/>}
+    <View style={styles.container}>
+        <View style={styles.cameraContainer}>
+            <Camera
+            ref={ref => setCamera(ref)}
+            style={styles.fixedRatio} 
+            type={type}
+            ratio={'1:1'}/>
+        </View>
+        
+        <TouchableOpacity style={styles.flipCameraButton}
+            onPress={() => {
+            setType(
+                type === CameraType.back 
+                ? CameraType.front 
+                : CameraType.back
+            );
+            }}>
+                <Text style={styles.buttonText}>Flip Camera</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity style={styles.takePictureButton} onPress={() => takePicture()}>
+            <Text style={styles.buttonText}>Take Picture</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.pickGalleryButton} onPress={() => pickImage()}>
+            <Text style={styles.buttonText}>Pick From Gallery</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Save', {image})}>
+            <Text style={styles.buttonText}>Save</Text>
+        </TouchableOpacity>
+
+        {image && <Image source={{uri: image}} style={{ flex: 1 }}/>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  cameraContainer: {
-    flex: 1,
-    flexDirection: 'row'
-  },
-  fixedRatio: {
-    flex: 1,
-    aspectRatio: 1
-  }
+    container: {
+        flex: 1,
+        backgroundColor: 'black'
+    },
+    cameraContainer: {
+        flex: 1,
+        flexDirection: 'row',
+    },
+    flipCameraButton: {
+        flex: 0.1,
+        alignItems: 'center',
+        alignSelf: 'center',
+        height: 50, 
+        width: 150,
+    },
+    takePictureButton: {
+        flex: 0.1,
+        alignItems: 'center',
+        alignSelf: 'center',
+        height: 50, 
+        width: 150,
+    },
+    pickGalleryButton: {
+        flex: 0.1,
+        alignItems: 'center',
+        alignSelf: 'center',
+        height: 50, 
+        width: 150,
+    },
+    saveButton: {
+        flex: 0.5,
+        alignItems: 'center',
+        alignSelf: 'center',
+        height: 50, 
+        width: 150,
+    },
+    buttonText: {
+        color: "white"
+    },
+    fixedRatio: {
+        flex: 1,
+        aspectRatio: 1
+    }
 })
 
 
