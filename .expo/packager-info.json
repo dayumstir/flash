@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": null,
+  "expoServerPort": 19000,
   "packagerPort": 19000,
-  "expoServerNgrokUrl": "https://33-9u7.anonymous.flash.exp.direct",
-  "packagerNgrokUrl": "https://33-9u7.anonymous.flash.exp.direct",
-  "ngrokPid": 52435,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "packagerPid": null,
-  "webpackServerPort": null
+  "webpackServerPort": 19006
 }
