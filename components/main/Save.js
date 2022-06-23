@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, TextInput, Image, Button } from 'react-native'
+import { View, TextInput, Image, Button, StyleSheet, TouchableOpacity, Text } from 'react-native'
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -60,14 +60,38 @@ export default function Save(props, {navigation}) {
     }
 
     return (
-        <View style={{ flex: 1 }}>
+        <View style={styles.container}>
             <Image source={{uri: props.route.params.image}}/>
+            
             <TextInput
+                style={styles.inputBox}
                 placeholder="Write a Caption . . ."
+                placeholderTextColor="#aaa"
                 onChangeText={(caption) => setCaption(caption)}
             />
 
-            <Button title="Save" onPress={() => uploadImage()}/>
+            <TouchableOpacity style={styles.postButton} onPress={() => uploadImage()}>
+                <Text style={styles.buttonText}>Post</Text>
+            </TouchableOpacity>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'black'
+    },
+    inputBox: {
+        margin: 20,
+        color: 'white'
+    },
+    postButton: {
+        alignSelf: 'flex-end',
+        margin: 20
+    },
+    buttonText: {
+        color: 'white',
+        fontWeight: 'bold'
+    }
+})
