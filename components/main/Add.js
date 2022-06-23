@@ -5,99 +5,99 @@ import * as ImagePicker from 'expo-image-picker';
 import { NavigationContainer } from '@react-navigation/native';
 
 export default function Add({ navigation }) {
-  const [hasCameraPermission, setHasCameraPermission] = useState(null);
-  const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
-  const [camera, setCamera] = useState(null);
-  const [image, setImage] = useState(null);
-  const [type, setType] = useState(CameraType.back);
+    const [hasCameraPermission, setHasCameraPermission] = useState(null);
+    const [hasGalleryPermission, setHasGalleryPermission] = useState(null);
+    const [camera, setCamera] = useState(null);
+    const [image, setImage] = useState(null);
+    const [type, setType] = useState(CameraType.back);
 
-  useEffect(() => {
-    (async () => {
-      const cameraStatus = await Camera.requestCameraPermissionsAsync();
-      setHasCameraPermission(cameraStatus.status === 'granted');
+    useEffect(() => {
+        (async () => {
+        const cameraStatus = await Camera.requestCameraPermissionsAsync();
+        setHasCameraPermission(cameraStatus.status === 'granted');
 
-      const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      setHasGalleryPermission(galleryStatus.status !== 'granted');
-    })();
-  }, []);
+        const galleryStatus = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        setHasGalleryPermission(galleryStatus.status !== 'granted');
+        })();
+    }, []);
 
-  const takePicture = async () => {
-    if(camera) {
-      const data = await camera.takePictureAsync(null);
-      setImage(data.uri)
+    const takePicture = async () => {
+        if(camera) {
+        const data = await camera.takePictureAsync(null);
+        setImage(data.uri)
+        }
     }
-  }
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      // will probably need a MediaTypeOptions.Videos too
-      mediaTypes: ImagePicker.MediaTypeOptions.Images, 
-      allowsEditing: true,
-      aspect: [1, 1],
-      quality: 1,
-    });
-  }
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+        // will probably need a MediaTypeOptions.Videos too
+        mediaTypes: ImagePicker.MediaTypeOptions.Images, 
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 1,
+        });
+    }
 
-  if (hasCameraPermission === null || hasGalleryPermission  === false) {
-    return <View />;
-  }
-  if (hasCameraPermission === false || hasGalleryPermission  === false) {
-    return <Text>No access to camera</Text>;
-  }
-  return (
-    <View style={styles.container}>
-        <View style={styles.cameraContainer}>
-            <Camera
-            ref={ref => setCamera(ref)}
-            style={styles.fixedRatio} 
-            type={type}
-            ratio={'1:1'}/>
-        </View>
-        
-        <TouchableOpacity style={styles.flipCameraButtonContainer}
-            onPress={() => {
-            setType(
-                type === CameraType.back 
-                ? CameraType.front 
-                : CameraType.back
-            );
-            }}>
-                {/* <Text style={styles.buttonText}>Flip Camera</Text> */}
-                <Image 
-                    source={require('../../assets/flip_camera_icon.png')}
-                    style={{ width: 50, height: 50 }}
-                />
-        </TouchableOpacity>
-        
-        <View style={styles.bottomContainer}>
-            <TouchableOpacity style={styles.pickGalleryButton} onPress={() => pickImage()}>
-                {/* <Text style={styles.buttonText}>Pick From Gallery</Text> */}
-                <Image 
-                        source={require('../../assets/pick_gallery_icon.png')}
+    if (hasCameraPermission === null || hasGalleryPermission  === false) {
+        return <View />;
+    }
+    if (hasCameraPermission === false || hasGalleryPermission  === false) {
+        return <Text>No access to camera</Text>;
+    }
+    return (
+        <View style={styles.container}>
+            <View style={styles.cameraContainer}>
+                <Camera
+                ref={ref => setCamera(ref)}
+                style={styles.fixedRatio} 
+                type={type}
+                ratio={'1:1'}/>
+            </View>
+            
+            <TouchableOpacity style={styles.flipCameraButtonContainer}
+                onPress={() => {
+                setType(
+                    type === CameraType.back 
+                    ? CameraType.front 
+                    : CameraType.back
+                );
+                }}>
+                    {/* <Text style={styles.buttonText}>Flip Camera</Text> */}
+                    <Image 
+                        source={require('../../assets/flip_camera_icon.png')}
                         style={{ width: 50, height: 50 }}
-                />
+                    />
             </TouchableOpacity>
             
-            <TouchableOpacity style={styles.takePictureButton} onPress={() => takePicture()}>
-                {/* <Text style={styles.buttonText}>Take Picture</Text> */}
-                <Image 
+            <View style={styles.bottomContainer}>
+                <TouchableOpacity style={styles.pickGalleryButton} onPress={() => pickImage()}>
+                    {/* <Text style={styles.buttonText}>Pick From Gallery</Text> */}
+                    <Image 
+                        source={require('../../assets/pick_gallery_icon.png')}
+                        style={{ width: 50, height: 50 }}
+                    />
+                </TouchableOpacity>
+                
+                <TouchableOpacity style={styles.takePictureButton} onPress={() => takePicture()}>
+                    {/* <Text style={styles.buttonText}>Take Picture</Text> */}
+                    <Image 
                         source={require('../../assets/take_picture_icon.png')}
                         style={{ width: 50, height: 50 }}
-                />
-            </TouchableOpacity>
+                    />
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Save', {image})}>
-                {/* <Text style={styles.buttonText}>Save</Text> */}
-                <Image 
+                <TouchableOpacity style={styles.saveButton} onPress={() => navigation.navigate('Save', {image})}>
+                    {/* <Text style={styles.buttonText}>Save</Text> */}
+                    <Image 
                         source={require('../../assets/save_icon.png')}
                         style={{ width: 50, height: 50 }}
-                />
-            </TouchableOpacity>
-        </View>
+                    />
+                </TouchableOpacity>
+            </View>
 
-        {image && <Image source={{uri: image}} style={{ flex: 1 }}/>}
-    </View>
-  );
+            {image && <Image source={{uri: image}} style={{ flex: 1 }}/>}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
