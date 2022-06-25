@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, TextInput, FlatList, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native'
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -24,11 +24,18 @@ export default function Search(props) {
         })
     }
   return (
-    <View>
-        <TextInput 
-            placeholder="Type Here..." 
-            onChangeText={(search) => fetchUsers(search)}/>
-
+    <View style={{ flex: 1, backgroundColor: "black" }}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.SearchButton}>
+            <Image 
+                source={require('../../assets/search.png')}
+                style={styles.SearchPhoto}
+            />
+            <TextInput 
+                placeholder="  Search"
+                style={styles.SearchWord}
+                onChangeText={(search) => fetchUsers(search)}
+            />
+        </TouchableOpacity>
         <FlatList
             numColumns={1}
             horizontal={false}
@@ -36,10 +43,35 @@ export default function Search(props) {
             renderItem={({ item }) => (
                 <TouchableOpacity
                     onPress={() => props.navigation.navigate("Profile", {uid: item.id})}>
-                    <Text>{item.name}</Text>
+                    <Text style={styles.TextColour}>{item.name}</Text>
                 </TouchableOpacity>
             )}
         />
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+    SearchButton: {
+      flexDirection: 'row', 
+      height: 50, 
+      alignSelf: 'stretch',
+      backgroundColor: 'white',
+      borderRadius: 50,
+      padding: 10,
+    },
+    SearchPhoto: {
+       width: 20, 
+       height: 30, 
+       alignItems: 'flex-left',
+    },
+    SearchWord: {
+       color: 'black', 
+       alignItems: 'flex-left',
+    },
+    TextColour: {
+       color:'white',
+       margin: 10,
+    }
+
+  })
