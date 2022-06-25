@@ -6,6 +6,7 @@ import {connect} from 'react-redux'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
+import { TouchableOpacity } from 'react-native-web'
 require('firebase/firestore')
 
 function Profile(props) {
@@ -85,9 +86,9 @@ function Profile(props) {
     return (
         <View style={styles.container}>
             <View style={styles.containerInfo}>
-                <Text>{user.name}</Text>
-                <Text>{user.email}</Text>
-
+                <Text style={{color: 'white', fontWeight: 'bold',}}>{user.name}</Text>
+                <Text style={{color: 'white'}}>{user.email}</Text>
+                <View style={styles.space}/>
                 {props.route.params.uid !== firebase.auth().currentUser.uid ? (
                     <View>
                         {following ? (
@@ -103,10 +104,10 @@ function Profile(props) {
                       )}
                     </View>
                 ) : 
-                    <Button
-                      title="Log Out"
-                      onPress={() => onLogout()}
-                    />
+                
+                    <TouchableOpacity style={styles.logOut} onPress={() => onLogout()}>
+                        <Text style={styles.text}>Log Out</Text>
+                    </TouchableOpacity>
                 }
             </View>
 
@@ -132,7 +133,8 @@ function Profile(props) {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1, 
+        flex: 1,
+        backgroundColor: "black"
     },
     containerInfo: {
         margin: 20
@@ -146,7 +148,26 @@ const styles = StyleSheet.create({
     image: {
         flex: 1,
         aspectRatio: 1/1
-    }
+    },
+    text: {
+        fontSize: 10,
+        fontWeight: 'bold',
+        color: 'white'
+    },
+    logOut: {
+        flexDirection: 'row', 
+        height: 20, 
+        backgroundColor: '#bebebe',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignSelf: 'stretch',
+        borderRadius: 100,
+        padding: 10,
+    },
+    space: {
+        width: 20,
+        height: 10,
+    },
 })
 
 const mapStateToProps = (store) => ({
