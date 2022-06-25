@@ -30,32 +30,37 @@ export class Login extends Component {
 
     render() {
         return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "black" }}>
-            <Image 
+        <View style={styles.container}>
+            <Image
                 source={require('../../assets/flash_icon.png')}
-                style={{ width: 400, height: 400 }}
+                style={styles.logo}
             />
             
-            <TextInput
-                placeholder="Email Address"
-                style={{color: 'white'}}
-                onChangeText={(email) => this.setState({ email: email })}
-            />
+            <View style={styles.textInputContainer}>
+                <TextInput
+                    placeholder="Email Address"
+                    placeholderTextColor='#bbb'
+                    style={styles.textInput}
+                    onChangeText={(email) => this.setState({ email: email })}
+                />
+            </View>
 
             <View style={styles.space}/>
 
-            <TextInput
-                placeholder="Password"
-                style={{color: 'white'}}
-                secureTextEntry={true}
-                onChangeText={(password) => this.setState({ password: password })}
-            />
-
+            <View style={styles.textInputContainer}>
+                <TextInput
+                    placeholder="Password"
+                    placeholderTextColor='#bbb'
+                    style={styles.textInput}
+                    secureTextEntry={true}
+                    onChangeText={(password) => this.setState({ password: password })}
+                />
+            </View>
             <View style={styles.space}/>
 
             {/* Sign In Button */} 
-            <TouchableOpacity activeOpacity={0.5} style={styles.LogButton} onPress={() => this.onSignUp()}>
-                <Text style={styles.text}>Sign In</Text>
+            <TouchableOpacity activeOpacity={0.5} style={styles.loginButton} onPress={() => this.onSignUp()}>
+                <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Sign In</Text>
             </TouchableOpacity>
 
         </View>
@@ -64,20 +69,38 @@ export class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-    LogButton: {
-      flexDirection: 'row', 
-      height: 50, 
-      width: 150,
-      backgroundColor: '#C45C01',
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 100,
-      padding: 10,
+    container: { 
+        flex: 1, 
+        alignItems: 'center', 
+        backgroundColor: 'black'
     },
-    text: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      color: 'white'
+    logo: {
+        flex: 0.4,
+        justifyContent: 'flex-start',
+        width: 400, 
+        height: 400,
+    },
+    textInputContainer: {
+        height: 50,
+        width: 220,
+        borderWidth: 2,
+        borderRadius: 10,
+        borderColor: 'white',
+        backgroundColor: '#444'
+    },
+    textInput: {
+        color: 'white', 
+        padding: 15
+    },
+    loginButton: {
+        flexDirection: 'row', 
+        height: 50, 
+        width: 150,
+        backgroundColor: '#C45C01',
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 100,
+        padding: 10,
     },
     space: {
       width: 20,
