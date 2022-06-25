@@ -39,13 +39,24 @@ function Feed(props) {
                     data={posts}
                     renderItem={({item}) => (
                         <View style={styles.containerImage}>
-                            <Text style={styles.container}>
+                            <Text style={styles.usernameText}>
                                 {item.user.name}
                             </Text>
                             <Image
                                 style={styles.image}
                                 source={{uri: item.downloadURL}}
                             />
+                            <View style={styles.containerCaption}>
+                                <Text style={styles.captionUsernameText}>
+                                    {item.user.name}
+                                </Text>
+                                <Text>
+                                    ""
+                                </Text>
+                                <Text style={styles.captionText}>
+                                    {item.caption}
+                                </Text>
+                            </View>
                         </View>
                     )}
                 />
@@ -58,11 +69,26 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    containerInfo: {
+    usernameText: {
+        color: "white",
+        margin: 20,
+        fontWeight: "bold",
+    },
+    containerCaption: {
+        flexDirection: "row",
         margin: 20
     },
+    captionUsernameText: {
+        color: "white",
+        fontWeight: "bold",
+    },
+    captionText: {
+        color: "white",
+        flexDirection: "row"
+    },
     containerGallery: {
-        flex: 1
+        flex: 1,
+        backgroundColor: "black"
     },
     containerImage: {
         flex: 1/3
