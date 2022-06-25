@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Text, View, Button } from 'react-native'
+import { Text, View, Button, StyleSheet } from 'react-native'
 import SelectBox from 'react-native-multi-selectbox'
 import { xorBy } from 'lodash'
+import { TouchableOpacity } from 'react-native-web'
 
 const gyms = [
     {id: 1, item: 'Ark Bloc'},
@@ -69,32 +70,33 @@ function Filter() {
     }*/
 
     return (
-      <View style={{ margin: 30 }}>
-        <View style={{ width: '100%', alignItems: 'center' }}>
-          <Text style={{ fontSize: 30, paddingBottom: 20 }}>Filter</Text>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "black" }}>
+        <View style={{ margin: 10 }}>
+          <View style={{ alignItems: 'center' }}>
+            <Text style={{ fontSize: 30, paddingBottom: 20, color: 'white' }}>Filter</Text>
+          </View>
+          <Text style={{ fontSize: 20, paddingBottom: 10, color: 'white' }}>Select Gym</Text>
+          <SelectBox
+            label='Select One'
+            options={gyms}
+            value={selectedGym}
+            onChange={onGymChange()}
+            hideInputFilter={false}
+          />
+          <View style={{ height: 40 }} />
+          <Text style={{ fontSize: 20, paddingBottom: 10, color: 'white' }}>Select Difficulty</Text>
+          <SelectBox
+            label='Select One'
+            options={difficulty}
+            value={selectedDifficulty}
+            onChange={onDifficultyChange()}
+            hideInputFilter={false}
+          />
+          <View style={{ height: 40 }}/>
+          <TouchableOpacity activeOpacity={0.5} style={styles.LogButton}>
+            <Text style={styles.text}>Go</Text>
+          </TouchableOpacity>
         </View>
-        <Text style={{ fontSize: 20, paddingBottom: 10 }}>Select Gym</Text>
-        <SelectBox
-          label='Select One'
-          options={gyms}
-          value={selectedGym}
-          onChange={onGymChange()}
-          hideInputFilter={false}
-        />
-        <View style={{ height: 40 }} />
-        <Text style={{ fontSize: 20, paddingBottom: 10 }}>Select Difficulty</Text>
-        <SelectBox
-          label='Select One'
-          options={difficulty}
-          value={selectedDifficulty}
-          onChange={onDifficultyChange()}
-          hideInputFilter={false}
-        />
-        <View style={{ height: 40 }} />
-        <Button
-          title='Go'
-          /*onPress={() => onFilter()}*/
-        />
       </View>
     )
   
@@ -106,4 +108,21 @@ function Filter() {
       }
   }
   
+  const styles = StyleSheet.create({
+    text: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: 'white',
+      alignSelf: 'center'
+    },
+    LogButton: {
+      flexDirection: 'row', 
+      height: 40, 
+      backgroundColor: '#C45C01',
+      alignItems: 'center',
+      borderRadius: 100,
+      padding: 10,
+    },
+  })
+
   export default Filter
