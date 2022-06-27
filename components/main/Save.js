@@ -147,7 +147,7 @@ export default function Save(props, {navigation}) {
                 />
             </View>
 
-            <View style={{ height: 40 }} />
+            <View style={{ height: 30 }} />
 
             <Text style={{ fontSize: 20, paddingBottom: 10 }}>Select Difficulty</Text>
             
@@ -176,11 +176,14 @@ export default function Save(props, {navigation}) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black'
+        backgroundColor: 'black',
+        alignItems: 'center'
     },
     inputBox: {
         margin: 20,
-        color: 'white'
+        color: 'white',
+        alignSelf: 'flex-start',
+        marginTop: 40
     },
     postButton: {
         alignSelf: 'flex-end',
