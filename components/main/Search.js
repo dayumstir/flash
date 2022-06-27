@@ -25,6 +25,7 @@ export default function Search(props) {
     }
   return (
     <View style={{ flex: 1, backgroundColor: "black" }}>
+        <View style={styles.space}/>
         <TouchableOpacity activeOpacity={0.5} style={styles.SearchButton}>
             <Image 
                 source={require('../../assets/search.png')}
@@ -72,6 +73,9 @@ const styles = StyleSheet.create({
     TextColour: {
        color:'white',
        margin: 10,
-    }
-
+    },
+    space: {
+        width: 20,
+        height: 20,
+    },
   })
