@@ -71,27 +71,45 @@ function Filter() {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "black" }}>
         <View style={{ margin: 10 }}>
+          
           <View style={{ alignItems: 'center' }}>
             <Text style={{ fontSize: 30, paddingBottom: 20, color: 'white' }}>Filter</Text>
           </View>
+         
           <Text style={{ fontSize: 20, paddingBottom: 10, color: 'white' }}>Select Gym</Text>
-          <SelectBox
-            label='Select One'
-            options={gyms}
-            value={selectedGym}
-            onChange={onGymChange()}
-            hideInputFilter={false}
-          />
+          
+          <View style={{ width: 250 }}>
+            <SelectBox
+                label='Select One'
+                labelStyle={{ color: 'black' }}
+                options={gyms}
+                value={selectedGym}
+                onChange={onGymChange()}
+                hideInputFilter={false}
+                selectedItemStyle={{ color: 'white' }}
+                optionsLabelStyle={{ color: 'white' }}
+            />
+          </View>
+          
           <View style={{ height: 40 }} />
+          
           <Text style={{ fontSize: 20, paddingBottom: 10, color: 'white' }}>Select Difficulty</Text>
-          <SelectBox
-            label='Select One'
-            options={difficulty}
-            value={selectedDifficulty}
-            onChange={onDifficultyChange()}
-            hideInputFilter={false}
-          />
+          
+          <View style={{ width: 250 }}>
+            <SelectBox
+                label='Select One'
+                labelStyle={{ color: 'black' }}
+                options={difficulty}
+                value={selectedDifficulty}
+                onChange={onDifficultyChange()}
+                hideInputFilter={false}
+                selectedItemStyle={{ color: 'white' }}
+                optionsLabelStyle={{ color: 'white' }}
+            />
+          </View>
+          
           <View style={{ height: 40 }}/>
+          
           <TouchableOpacity activeOpacity={0.5} style={styles.LogButton}>
             <Text style={styles.text}>Go</Text>
           </TouchableOpacity>
