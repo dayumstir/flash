@@ -107,9 +107,9 @@ export class App extends Component {
                 //headerTitle: (props) => <LogoTitle {...props} />,
                 title: 'FLASH',
                 headerStyle: {
-                  backgroundColor: 'black',
+                  backgroundColor: '#E8B63E',
                 },
-                headerTintColor: '#fff',
+                headerTintColor: 'black',
                 headerTitleStyle: {
                   fontWeight: 'bold',
                 },
