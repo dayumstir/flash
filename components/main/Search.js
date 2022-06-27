@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
     SearchPhoto: {
        width: 20, 
        height: 30, 
-       alignItems: 'flex-left',
+       alignItems: 'flex-start',
     },
     SearchWord: {
        color: 'black', 
-       alignItems: 'flex-left',
+       alignItems: 'flex-start',
     },
     TextColour: {
        color:'white',

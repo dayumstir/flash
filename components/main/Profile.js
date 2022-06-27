@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     },
     logOut: {
         flexDirection: 'row', 
-        height: 20, 
+        height: 30, 
         backgroundColor: '#bebebe',
         alignItems: 'center',
         justifyContent: 'center',
