@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -32,17 +34,17 @@ export class Main extends Component {
     }
     render() {
         return (
-            <Tab.Navigator initialRouteName="Feed" labeled={false} barStyle={{ backgroundColor: '#555' }}>
+            <Tab.Navigator initialRouteName="Feed" labeled={false} barStyle={{ backgroundColor: 'lightgrey' }}>
                 <Tab.Screen name="Feed" component={FeedScreen} 
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="home" color={color} size={26}/>
+                            <Ionicons name="ios-home-outline" color={color} size={26}/>
                         ),
                     }}/>
                 <Tab.Screen name="SearchScreen" component={SearchScreen} navigation={this.props.navigation}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="magnify" color={color} size={26}/>
+                            <Ionicons name="ios-search-outline" color={color} size={26}/>
                         ),
                     }}/>
                 <Tab.Screen name="AddContainer" component={EmptyScreen}
@@ -54,13 +56,13 @@ export class Main extends Component {
                     })}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="plus-box" color={color} size={26}/>
+                            <Ionicons name="ios-add-circle-outline" color={color} size={26}/>
                         ),
                 }}/>
                 <Tab.Screen name="FilterScreen" component={FilterScreen} navigation={this.props.navigation}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="filter" color={color} size={26}/>
+                            <AntDesign name="filter" color={color} size={26}/>
                         ),
                     }}/>
                 <Tab.Screen name="Profile" component={ProfileScreen} 
@@ -72,7 +74,7 @@ export class Main extends Component {
                 })}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="account-circle" color={color} size={26}/>
+                            <Ionicons name="ios-person-outline" color={color} size={26}/>
                         ),
                 }}/>
             </Tab.Navigator>

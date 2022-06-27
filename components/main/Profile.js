@@ -1,12 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import { StyleSheet, View, Text, Image, FlatList, Button } from 'react-native'
+import { StyleSheet, View, Text, Image, FlatList, Button, TouchableOpacity } from 'react-native'
 
 import {connect} from 'react-redux'
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
-import { TouchableOpacity } from 'react-native-web'
 require('firebase/firestore')
 
 function Profile(props) {
