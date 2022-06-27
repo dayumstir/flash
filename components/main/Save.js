@@ -132,7 +132,7 @@ export default function Save(props, {navigation}) {
                 onChangeText={(caption) => setCaption(caption)}
             />
 
-            <Text style={{ fontSize: 20, paddingBottom: 10 }}>Select Gym</Text>
+            <Text style={{ fontSize: 15, paddingBottom: 10, color: 'white' }}>Select Gym</Text>
             
             <View style={{ width: 250 }}>
                 <SelectBox
@@ -149,7 +149,7 @@ export default function Save(props, {navigation}) {
 
             <View style={{ height: 30 }} />
 
-            <Text style={{ fontSize: 20, paddingBottom: 10 }}>Select Difficulty</Text>
+            <Text style={{ fontSize: 15, paddingBottom: 10, color: 'white' }}>Select Difficulty</Text>
             
             <View style={{ width: 250 }}>
                 <SelectBox
