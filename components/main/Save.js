@@ -133,24 +133,36 @@ export default function Save(props, {navigation}) {
             />
 
             <Text style={{ fontSize: 20, paddingBottom: 10 }}>Select Gym</Text>
-            <SelectBox
-                label='Select One'
-                options={gyms}
-                value={selectedGym}
-                onChange={onGymChange()}
-                hideInputFilter={false}
-            />
+            
+            <View style={{ width: 250 }}>
+                <SelectBox
+                    label='Select One'
+                    labelStyle={{ color: 'black' }}
+                    options={gyms}
+                    value={selectedGym}
+                    onChange={onGymChange()}
+                    hideInputFilter={false}
+                    selectedItemStyle={{ color: 'white' }}
+                    optionsLabelStyle={{ color: 'white' }}
+                />
+            </View>
 
             <View style={{ height: 40 }} />
 
             <Text style={{ fontSize: 20, paddingBottom: 10 }}>Select Difficulty</Text>
-            <SelectBox
-                label='Select One'
-                options={difficulty}
-                value={selectedDifficulty}
-                onChange={onDifficultyChange()}
-                hideInputFilter={false}
-            />
+            
+            <View style={{ width: 250 }}>
+                <SelectBox
+                    label='Select One'
+                    labelStyle={{ color: 'black' }}
+                    options={difficulty}
+                    value={selectedDifficulty}
+                    onChange={onDifficultyChange()}
+                    hideInputFilter={false}
+                    selectedItemStyle={{ color: 'white' }}
+                    optionsLabelStyle={{ color: 'white' }}
+                />
+            </View>
 
             <View style={{ height: 40 }} />
 
