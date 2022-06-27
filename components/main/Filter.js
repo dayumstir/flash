@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Text, View, Button, StyleSheet } from 'react-native'
+import { Text, View, Button, StyleSheet, TouchableOpacity } from 'react-native'
 import SelectBox from 'react-native-multi-selectbox'
-import { xorBy } from 'lodash'
-import { TouchableOpacity } from 'react-native-web'
+
 
 const gyms = [
     {id: 1, item: 'Ark Bloc'},
