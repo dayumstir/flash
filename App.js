@@ -41,6 +41,14 @@ import FilterScreen from './components/main/Filter'
 
 const Stack = createStackNavigator();
 
+function LogoTitle() {
+  return (
+    <Image
+      style={{ width: 50, height: 50 }}
+      source={require('./assets/flash_icon_words.png')}
+    />
+  );
+}
 
 export class App extends Component {
   constructor(props) {
@@ -95,7 +103,18 @@ export class App extends Component {
         <NavigationContainer>
           <Stack.Navigator initialRouteName="Main">
 
-            <Stack.Screen name="Flash" component={MainScreen}/>
+            <Stack.Screen name="Flash" component={MainScreen} options={{
+                //headerTitle: (props) => <LogoTitle {...props} />,
+                title: 'FLASH',
+                headerStyle: {
+                  backgroundColor: 'black',
+                },
+                headerTintColor: '#fff',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+              }}
+            />
             <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation}/>
             <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation}/>
             <Stack.Screen name="Filter" component={FilterScreen} navigation={this.props.navigation}/>
