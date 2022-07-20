@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { StyleSheet, View, Text, Image, FlatList, Button } from 'react-native'
+import { StyleSheet, View, Text, Image, FlatList, Button, TouchableOpacity } from 'react-native'
 
 import {connect} from 'react-redux'
 
@@ -64,27 +64,36 @@ const onDislikePress = (userId, postId) => {
                                 style={styles.image}
                                 source={{uri: item.downloadURL}}
                             />
-                            { item.currentUserLike ? 
-                                (
-                                    <Button
-                                        title="Dislike"
-                                        onPress={() => onDislikePress(item.user.uid, item.id)}
+                            <View style={styles.containerInteraction}>
+                                { item.currentUserLike ? 
+                                    (
+                                        <Button
+                                            title="Dislike"
+                                            onPress={() => onDislikePress(item.user.uid, item.id)}
+                                        />
+                                    )
+                                :
+                                    (
+                                        <TouchableOpacity activeOpacity={0.5} style={styles.buttons} onPress={() => onLikePress(item.user.uid, item.id)}>
+                                            <Image 
+                                            style = {styles.buttonImage}
+                                            source={require('../../assets/white_heart.png')}
+                                            />
+                                        </TouchableOpacity>
+                                    )
+                                }
+
+                                <TouchableOpacity 
+                                    activeOpacity={0.5} 
+                                    style={styles.buttons}  
+                                    onPress={()=> props.navigation.navigate('Comment',{postId: item.id, uid: item.user.uid})}
+                                >
+                                     <Image 
+                                        style = {styles.commentImage}
+                                        source={require('../../assets/message.png')}
                                     />
-                                )
-                            :
-                                (
-                                    <Button
-                                        title="Like"
-                                        onPress={() => onLikePress(item.user.uid, item.id)}
-                                    />
-                                )
-                            }
-                            <Text
-                                onPress={()=> props.navigation.navigate('Comment',
-                                {postId: item.id, uid: item.user.uid}
-                                )}
-                                style={{fontWeight: 'bold', color: 'white' }}
-                            >View Comments...</Text>
+                                </TouchableOpacity>
+                            </View>
                             <View style={styles.containerCaption}>
                                 <Text style={styles.captionUsernameText}>
                                     {item.user.name}
@@ -130,11 +139,34 @@ const styles = StyleSheet.create({
         backgroundColor: "black"
     },
     containerImage: {
-        flex: 1/3
+        flex: 1/3,
+    },
+    containerInteraction: {
+        flexDirection: "row"
     },
     image: {
         flex: 1,
         aspectRatio: 1/1
+    },
+    buttonImage: {
+        flex: 1, 
+        width: 40, 
+        height: 40
+    },
+    commentImage: {
+        flex: 1, 
+        width: 40, 
+        height: 35
+    },
+    buttons: {
+        flexDirection: 'row', 
+        height: 30 , 
+        width: 55,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 100,
+        padding: 10,
+        margin: 5
     }
 })
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Text, FlatList, Button, TextInput } from 'react-native'
+import { View, Text, FlatList, Button, TextInput, StyleSheet} from 'react-native'
 
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -67,7 +67,7 @@ const onCommentSend = () => {
     })
 }
     return (
-        <View>
+        <View style={styles.container}>
             <FlatList
                 numColumns={1}
                 horizontal={false}
@@ -76,12 +76,12 @@ const onCommentSend = () => {
                     <View>
                         {item.user !== undefined ? 
                             <Text
-                            style={{fontWeight: 'bold'}}
+                            style={styles.text}
                             >
                                 {item.user.name}
                             </Text>
                         : null}
-                        <Text>{item.text}</Text>
+                        <Text style={styles.commentText}>{item.text}</Text>
                     </View>
                 )}
             />
@@ -90,6 +90,7 @@ const onCommentSend = () => {
                 <TextInput
                 placeholder='Add comment'
                 onChangeText={(text) => setText(text)}
+                style={styles.tempText}
                 />
                 <Button
                     onPress={() => onCommentSend()}
@@ -99,6 +100,25 @@ const onCommentSend = () => {
         </View>
   )
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "black"
+    },
+    tempText: {
+        color: 'red'
+    },
+    text: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 14,
+    },
+    commentText: {
+        color: 'white',
+        fontSize: 12,
+    },
+})
 
 const mapStateToProps = (store) => ({
     users: store.usersState.users
