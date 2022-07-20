@@ -73,13 +73,14 @@ const onCommentSend = () => {
                 horizontal={false}
                 data={comments}
                 renderItem={({item}) => (
-                    <View>
+                    <View style = {styles.containerDirection}>
                         {item.user !== undefined ? 
                             <Text
                             style={styles.text}
                             >
-                                {item.user.name}
+                                {item.user.name}:
                             </Text>
+
                         : null}
                         <Text style={styles.commentText}>{item.text}</Text>
                     </View>
@@ -113,10 +114,15 @@ const styles = StyleSheet.create({
         color: 'white',
         fontWeight: 'bold',
         fontSize: 14,
+        margin: 5
     },
     commentText: {
         color: 'white',
         fontSize: 12,
+        margin: 7
+    },
+    containerDirection: {
+        flexDirection: "row"
     },
 })
 
