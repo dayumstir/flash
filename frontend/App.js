@@ -37,6 +37,7 @@ import MainScreen from './components/Main'
 import AddScreen from './components/main/Add'
 import SaveScreen from './components/main/Save'
 import FilterScreen from './components/main/Filter'
+import FilteredScreen from './components/main/Filtered'
 import CommentScreen from './components/main/Comment'
 
 
@@ -116,10 +117,50 @@ export class App extends Component {
                 },
               }}
             />
-            <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation}/>
-            <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation}/>
-            <Stack.Screen name="Filter" component={FilterScreen} navigation={this.props.navigation}/>
-            <Stack.Screen name="Comment" component={CommentScreen} navigation={this.props.navigation}/>
+            <Stack.Screen name="Add" component={AddScreen} navigation={this.props.navigation} options={{
+                title: 'FLASH',
+                headerStyle: {
+                  backgroundColor: '#E8B63E',
+                },
+                headerTintColor: 'black',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+            }}/>
+            
+            <Stack.Screen name="Save" component={SaveScreen} navigation={this.props.navigation} options={{
+                title: 'FLASH',
+                headerStyle: {
+                  backgroundColor: '#E8B63E',
+                },
+                headerTintColor: 'black',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+            }}/>
+
+            <Stack.Screen name="Filtered" component={FilteredScreen} navigation={this.props.navigation} options={{
+                title: 'FLASH',
+                headerStyle: {
+                  backgroundColor: '#E8B63E',
+                },
+                headerTintColor: 'black',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+            }}/>
+
+            <Stack.Screen name="Comment" component={CommentScreen} navigation={this.props.navigation} options={{
+                title: 'FLASH',
+                headerStyle: {
+                  backgroundColor: '#E8B63E',
+                },
+                headerTintColor: 'black',
+                headerTitleStyle: {
+                  fontWeight: 'bold',
+                },
+            }}/>
+            
           </Stack.Navigator>
         </NavigationContainer>
       </Provider>

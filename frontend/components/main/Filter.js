@@ -55,90 +55,99 @@ const difficulty = [
     {id:10, item: 'Level 10'},
 ]
 
-function Filter() {
+function Filter({ navigation }) {
     const [selectedGym, setSelectedGym] = useState({})
     const [selectedDifficulty, setSelectedDifficulty] = useState([])
 
-    /*const onFilter = () => {
-        firebase.firestore()
-        .collection("")
-        .doc(firebase.auth().currentUser.uid)
-        .collection("")
-        .doc(props.route.params.uid)
-        .set({})
-    }*/
+    const onFilter = () => {
+        if (selectedGym == null || selectedDifficulty == null) {
+            return;
+        }
+        
+        navigation.navigate('Filtered', {
+            selectedGym: selectedGym,
+            selectedDifficulty: selectedDifficulty
+        })
+        // firebase.firestore()
+        // .collection("")
+        // .doc(firebase.auth().currentUser.uid)
+        // .collection("")
+        // .doc(props.route.params.uid)
+        // .set({})
+    }
 
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "black" }}>
-        <View style={{ margin: 10 }}>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: "black" }}>          
           
-          <View style={{ alignItems: 'center' }}>
-            <Text style={{ fontSize: 30, paddingBottom: 20, color: 'white' }}>Filter</Text>
-          </View>
-         
-          <Text style={{ fontSize: 20, paddingBottom: 10, color: 'white' }}>Select Gym</Text>
-          
-          <View style={{ width: 250 }}>
-            <SelectBox
-                label='Select One'
-                labelStyle={{ color: 'black' }}
-                options={gyms}
-                value={selectedGym}
-                onChange={onGymChange()}
-                hideInputFilter={false}
-                selectedItemStyle={{ color: 'white' }}
-                optionsLabelStyle={{ color: 'white' }}
-            />
-          </View>
-          
-          <View style={{ height: 40 }} />
-          
-          <Text style={{ fontSize: 20, paddingBottom: 10, color: 'white' }}>Select Difficulty</Text>
-          
-          <View style={{ width: 250 }}>
-            <SelectBox
-                label='Select One'
-                labelStyle={{ color: 'black' }}
-                options={difficulty}
-                value={selectedDifficulty}
-                onChange={onDifficultyChange()}
-                hideInputFilter={false}
-                selectedItemStyle={{ color: 'white' }}
-                optionsLabelStyle={{ color: 'white' }}
-            />
-          </View>
-          
-          <View style={{ height: 40 }}/>
-          
-          <TouchableOpacity activeOpacity={0.5} style={styles.LogButton}>
-            <Text style={styles.text}>Go</Text>
-          </TouchableOpacity>
+        <View style={{ alignItems: 'center' }}>
+        <Text style={{ fontSize: 30, paddingBottom: 50, color: 'white' }}>Filter</Text>
         </View>
+        
+        <Text style={{ fontSize: 20, width: 250, paddingBottom: 10, color: 'white' }}>Select Gym</Text>
+        
+        <View style={{ width: 250 }}>
+        <SelectBox
+            label='Select One'
+            labelStyle={{ color: 'black' }}
+            options={gyms}
+            value={selectedGym}
+            onChange={onGymChange()}
+            hideInputFilter={false}
+            selectedItemStyle={{ color: 'white' }}
+            optionsLabelStyle={{ color: 'white' }}
+        />
+        </View>
+        
+        <View style={{ height: 40 }} />
+        
+        <Text style={{ fontSize: 20, width: 250, paddingBottom: 10, color: 'white' }}>Select Difficulty</Text>
+        
+        <View style={{ width: 250 }}>
+        
+        <SelectBox
+            label='Select One'
+            labelStyle={{ color: 'black' }}
+            options={difficulty}
+            value={selectedDifficulty}
+            onChange={onDifficultyChange()}
+            hideInputFilter={false}
+            selectedItemStyle={{ color: 'white' }}
+            optionsLabelStyle={{ color: 'white' }}
+        />
+        </View>
+        
+        <View style={{ height: 40 }}/>
+        
+        <TouchableOpacity activeOpacity={0.5} style={styles.goButton} onPress={() => onFilter()}>
+            <Text style={styles.text}>Go</Text>
+        </TouchableOpacity>
+
       </View>
     )
   
     function onGymChange() {
-      return (val) => setSelectedGym(val)
+        return (val) => setSelectedGym(val)
     }
     function onDifficultyChange() {
         return (val) => setSelectedDifficulty(val)
-      }
+    }
   }
   
   const styles = StyleSheet.create({
     text: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      color: 'white',
-      alignSelf: 'center'
-    },
-    LogButton: {
-      flexDirection: 'row', 
-      height: 40, 
-      backgroundColor: '#C45C01',
-      alignItems: 'center',
-      borderRadius: 100,
-      padding: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: 'white',
+        alignSelf: 'center',
+        },
+    goButton: {
+        flexDirection: 'row', 
+        height: 40, 
+        width: 200,
+        backgroundColor: '#C45C01',
+        borderRadius: 100,
+        padding: 10,
+        alignSelf: 'center'
     },
   })
 

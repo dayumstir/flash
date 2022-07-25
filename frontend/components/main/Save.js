@@ -70,7 +70,7 @@ export default function Save(props, {navigation}) {
     const uploadImage = async () => {
         const uri = props.route.params.image
         const childPath = `post/${firebase.auth().currentUser.uid}/${Math.random().toString(36)}`
-        console.log(childPath)
+        // console.log(childPath)
 
         const response = await fetch(uri)
         const blob = await response.blob()
@@ -100,12 +100,12 @@ export default function Save(props, {navigation}) {
         task.on("state_changed", taskProgress, taskError, taskCompleted)
     }
 
-            function onGymChange() {
-            return (val) => setSelectedGym(val)
-        }
-        function onDifficultyChange() {
-            return (val) => setSelectedDifficulty(val)
-        }
+    function onGymChange() {
+        return (val) => setSelectedGym(val)
+    }
+    function onDifficultyChange() {
+        return (val) => setSelectedDifficulty(val)
+    }
 
     const savePostData = (downloadURL) => {
         firebase.firestore()
@@ -115,7 +115,9 @@ export default function Save(props, {navigation}) {
             .add({
                 downloadURL,
                 caption,
-                creation: firebase.firestore.FieldValue.serverTimestamp()
+                creation: firebase.firestore.FieldValue.serverTimestamp(),
+                gym: selectedGym.item,
+                difficulty: selectedDifficulty.item,
             }).then((function () {
                 props.navigation.popToTop()
             }))
@@ -127,7 +129,7 @@ export default function Save(props, {navigation}) {
             
             <TextInput
                 style={styles.inputBox}
-                placeholder="Write a Caption . . ."
+                placeholder="Write a caption . . ."
                 placeholderTextColor="#aaa"
                 onChangeText={(caption) => setCaption(caption)}
             />
@@ -177,7 +179,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'black',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     inputBox: {
         margin: 20,
@@ -187,10 +189,17 @@ const styles = StyleSheet.create({
     },
     postButton: {
         alignSelf: 'flex-end',
-        margin: 20
+        margin: 20,
+        height: 40,
+        width: 100,
+        borderRadius: 100,
+        backgroundColor: '#C45C01',
+        padding: 10
     },
     buttonText: {
         color: 'white',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        alignSelf: 'center'
     }
 })
+

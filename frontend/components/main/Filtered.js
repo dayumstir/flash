@@ -8,7 +8,7 @@ import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 require('firebase/firestore')
 
-function Feed(props) {
+function Filtered(props) {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -176,4 +176,4 @@ const mapStateToProps = (store) => ({
     usersFollowingLoaded: store.usersState.usersFollowingLoaded,
 })
 
-export default connect(mapStateToProps, null)(Feed)
+export default connect(mapStateToProps, null)(Filtered)
