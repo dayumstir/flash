@@ -1,6 +1,6 @@
 # flash
 
-# Link to a DETAILED README: 
+## Link to a DETAILED README: 
 https://docs.google.com/document/d/1xr1cL5nsaYpzwFMOhM-B6hnuNowqGn5c9ztAoXmlLqo/edit?usp=sharing
 
 ## Project Scope
