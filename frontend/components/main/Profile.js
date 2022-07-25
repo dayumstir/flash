@@ -104,7 +104,7 @@ function Profile(props) {
                     </View>
                 ) : 
                 
-                    <TouchableOpacity style={styles.logOut} onPress={() => onLogout()}>
+                    <TouchableOpacity style={styles.logoutButton} onPress={() => onLogout()}>
                         <Text style={styles.text}>Log Out</Text>
                     </TouchableOpacity>
                 }
@@ -149,13 +149,13 @@ const styles = StyleSheet.create({
         aspectRatio: 1/1
     },
     text: {
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: 'bold',
         color: 'white'
     },
-    logOut: {
+    logoutButton: {
         flexDirection: 'row', 
-        height: 20, 
+        height: 40, 
         backgroundColor: '#bebebe',
         alignItems: 'center',
         justifyContent: 'center',
