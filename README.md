@@ -1,6 +1,6 @@
 # flash
 
-## Link to a DETAILED README: 
+## Link to a detailed README:
 https://docs.google.com/document/d/1xr1cL5nsaYpzwFMOhM-B6hnuNowqGn5c9ztAoXmlLqo/edit?usp=sharing
 
 ## Project Scope
@@ -54,6 +54,20 @@ For Milestone 2,
 - 13 - 19 June: Profile page, Search feature, Follow system (front & backend)
 - 20 - 26 June: Home feed page, Logout feature, Filter feature
 
+## Milestone 3 (Extension)
+### Plan
+For Milestone 3,
+- 27 June - 3 July: User Experience
+- 4 - 10 July: User Interaction
+- 11 - 17 July: Integration of front-end and back-end
+- 18 - 24 July: Testing and Debugging
+
+### What has been accomplished thus far
+- 27 June - 3 July: Technical knowledge research
+- 4 - 10 July: Filter feature, Research on unit testing, implementation of unit testing, error messages
+- 11 - 17 July: Debugging, UI/UX, Implementation of unit testing
+- 18 - 24 July: Updated README, video and poster
+
 ## Using the features
 1) Install NodeJS by typing this code into your terminal
 ```
@@ -67,6 +81,10 @@ expo init ____ (your project name)
 4) Navigate into the folder 
 ```
 cd ____ (your project name)
+```
+5) Navigate into the frontend folder
+```
+cd frontend
 ```
 5) Ensure the folder contains the files in this GitHub repository
 6) Run the project by typing the following into your terminal
