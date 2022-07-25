@@ -1,25 +1,33 @@
 import React, { Component } from 'react'
 import { View, TextInput, TouchableOpacity, StyleSheet, Text, Image} from 'react-native'
+import { Snackbar } from 'react-native-paper';
+import { useState } from "react";
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
-export class Register extends Component {
-    constructor(props) {
-        super(props);
 
-        this.state = {
-            email: '',
-            password: '',
-            name: ''
+export default function Register(props) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
+    const [isValid, setIsValid] = useState(true);
+
+    const onRegister = () => {
+        if (name.length == 0 || email.length == 0 || password.length == 0) {
+            setIsValid({ bool: true, boolSnack: true, message: "Please fill out everything." })
+            return;
+        }
+        if (!email.includes('@')) {
+            setIsValid({ bool: true, boolSnack: true, message: "Please enter a valid email." })
+            return;
+        }
+        if (password.length < 6) {
+            setIsValid({ bool: true, boolSnack: true, message: "Password must be at least 6 characters." })
+            return;
         }
 
-        this.onSignUp = this.onSignUp.bind(this)
-    }
-
-    onSignUp() {
-        const { email, password, name } = this.state;
         firebase.auth().createUserWithEmailAndPassword(email, password)
             .then((result) => {
                 firebase.firestore().collection("users")
@@ -30,13 +38,12 @@ export class Register extends Component {
                     })
                 console.log(result)
             })
-            .catch((error) => {
-                console.log(error)
+            .catch(() => {
+                setIsValid({ bool: true, boolSnack: true, message: "Account already exists." })
             })
     }
 
-    render() {
-        return (
+    return (
         <View style={styles.container}>
             <Image 
                 source={require('../../assets/flash_icon.png')}
@@ -48,7 +55,7 @@ export class Register extends Component {
                     placeholder="Name"
                     placeholderTextColor='#bbb'
                     style={styles.textInput}
-                    onChangeText={(name) => this.setState({ name: name })}
+                    onChangeText={(name) => setName(name)}
                 />
             </View>
 
@@ -59,7 +66,7 @@ export class Register extends Component {
                     placeholder="Email Address"
                     placeholderTextColor='#bbb'
                     style={styles.textInput}
-                    onChangeText={(email) => this.setState({ email: email })}
+                    onChangeText={(email) => setEmail(email)}
                 />
             </View>
 
@@ -71,21 +78,28 @@ export class Register extends Component {
                     placeholderTextColor='#bbb'
                     secureTextEntry={true}
                     style={styles.textInput}
-                    onChangeText={(password) => this.setState({ password: password })}
+                    onChangeText={(password) => setPassword(password)}
                 />
             </View>
 
             <View style={styles.space}/>
 
             {/* Create Account Button */} 
-            <TouchableOpacity activeOpacity={0.5} style={styles.registerButton} onPress={() => this.onSignUp()}>
+            <TouchableOpacity activeOpacity={0.5} style={styles.registerButton} onPress={() => onRegister()}>
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Create Account</Text>
             </TouchableOpacity>
 
+            <Snackbar
+                visible={isValid.boolSnack}
+                duration={2000}
+                onDismiss={() => { setIsValid({ boolSnack: false }) }}>
+                {isValid.message}
+            </Snackbar>
+
         </View>
-        )
-    }
+    )
 }
+
 const styles = StyleSheet.create({
     container: { 
         flex: 1, 
@@ -125,5 +139,3 @@ const styles = StyleSheet.create({
       height: 20,
     },
   })
-
-export default Register
