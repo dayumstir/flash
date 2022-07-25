@@ -1,35 +1,28 @@
 import React, { Component } from 'react'
 import { View, TextInput, TouchableOpacity, StyleSheet, Text, Image} from 'react-native'
+import { Snackbar } from 'react-native-paper';
+import { useState } from "react";
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
 
-export class Login extends Component {
-    constructor(props) {
-        super(props);
+export default function Login(props) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [isValid, setIsValid] = useState(true);
 
-        this.state = {
-            email: '',
-            password: '',
-        }
-
-        this.onSignUp = this.onSignUp.bind(this)
-    }
-
-    onSignUp() {
-        const { email, password } = this.state;
+    const onLogin = () => {
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((result) => {
                 console.log(result)
             })
-            .catch((error) => {
-                console.log(error)
+            .catch(() => {
+                setIsValid({ bool: true, boolSnack: true, message: "Invalid email address / password." })
             })
     }
 
-    render() {
-        return (
+    return (
         <View style={styles.container}>
             <Image
                 source={require('../../assets/flash_icon.png')}
@@ -41,7 +34,7 @@ export class Login extends Component {
                     placeholder="Email Address"
                     placeholderTextColor='#bbb'
                     style={styles.textInput}
-                    onChangeText={(email) => this.setState({ email: email })}
+                    onChangeText={(email) => setEmail(email)}
                 />
             </View>
 
@@ -53,19 +46,34 @@ export class Login extends Component {
                     placeholderTextColor='#bbb'
                     style={styles.textInput}
                     secureTextEntry={true}
-                    onChangeText={(password) => this.setState({ password: password })}
+                    onChangeText={(password) => setPassword(password)}
                 />
             </View>
+            
             <View style={styles.space}/>
 
             {/* Sign In Button */} 
-            <TouchableOpacity activeOpacity={0.5} style={styles.loginButton} onPress={() => this.onSignUp()}>
+            <TouchableOpacity activeOpacity={0.5} style={styles.loginButton} onPress={() => onLogin()}>
                 <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white' }}>Sign In</Text>
             </TouchableOpacity>
 
+            <View style={styles.space}/>
+
+            <Text style={{ color: '#bbb' }}
+                title="Register"
+                onPress={() => props.navigation.navigate("Register")} >
+                Don't have an account? Sign up here!
+            </Text>
+
+            <Snackbar
+                visible={isValid.boolSnack}
+                duration={2000}
+                onDismiss={() => { setIsValid({ boolSnack: false }) }}>
+                {isValid.message}
+            </Snackbar>
+
         </View>
-        )
-    }
+    )
 }
 
 const styles = StyleSheet.create({
@@ -107,5 +115,3 @@ const styles = StyleSheet.create({
       height: 20,
     },
   })
-
-export default Login
