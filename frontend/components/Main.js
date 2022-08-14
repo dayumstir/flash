@@ -43,7 +43,7 @@ export class Main extends Component {
                 <Tab.Screen name="SearchScreen" component={SearchScreen} navigation={this.props.navigation}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <Ionicons name="ios-search-outline" color={color} size={26}/>
+                            <Ionicons name="ios-search-outline" color={color} size={26} testID="searchButtonFeed"/>
                         ),
                     }}/>
                 <Tab.Screen name="AddContainer" component={EmptyScreen}
@@ -55,13 +55,13 @@ export class Main extends Component {
                     })}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <Ionicons name="ios-add-circle-outline" color={color} size={26}/>
+                            <Ionicons name="ios-add-circle-outline" color={color} size={26} testID="addButtonFeed"/>
                         ),
                 }}/>
                 <Tab.Screen name="FilterScreen" component={FilterScreen} navigation={this.props.navigation}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <AntDesign name="filter" color={color} size={26}/>
+                            <AntDesign name="filter" color={color} size={26} testID="filterButtonFeed"/>
                         ),
                     }}/>
                 <Tab.Screen name="Profile" component={ProfileScreen} 
@@ -73,7 +73,7 @@ export class Main extends Component {
                 })}
                     options={{
                         tabBarIcon: ({ color, size }) => (
-                            <Ionicons name="ios-person-outline" color={color} size={26}/>
+                            <Ionicons name="ios-person-outline" color={color} size={26} testID="profileButtonFeed"/>
                         ),
                 }}/>
             </Tab.Navigator>

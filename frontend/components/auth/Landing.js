@@ -11,14 +11,14 @@ export default function Landing({ navigation }) {
         />
 
         {/* Register Button */}
-        <TouchableOpacity activeOpacity={0.5} style={styles.registerButton} onPress={() => navigation.navigate("Register")}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.registerButton} onPress={() => navigation.navigate("Register")} testID="registerButtonLanding">
             <Text style={styles.text}>Create Account</Text>
         </TouchableOpacity>
 
         <View style={styles.space}/>
 
         {/* Login Button */}
-        <TouchableOpacity activeOpacity={0.5} style={styles.loginButton} onPress={() => navigation.navigate("Login")}>
+        <TouchableOpacity activeOpacity={0.5} style={styles.loginButton} onPress={() => navigation.navigate("Login")} testID="loginButtonLanding">
             <Text style={styles.text}>Sign In</Text>
         </TouchableOpacity>
     </View>
